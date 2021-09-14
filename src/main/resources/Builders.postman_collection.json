@@ -1,0 +1,209 @@
+{
+	"info": {
+		"_postman_id": "f1baca38-a684-469d-a18b-1d70fbe0dce4",
+		"name": "Builders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/clientes?status=ATIVO",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "5",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "nome",
+							"disabled": true
+						},
+						{
+							"key": "status",
+							"value": "ATIVO"
+						},
+						{
+							"key": "nome",
+							"value": "sé",
+							"disabled": true
+						},
+						{
+							"key": "dataNascimento",
+							"value": "1970-06-13",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/clientes/:codigoCliente",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						":codigoCliente"
+					],
+					"variable": [
+						{
+							"key": "codigoCliente",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Salvar cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nome\": \"abigail\",\r\n        \"dataNascimento\": \"2010-09-13T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar completo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nome\": \"abigail\",        \r\n        \"status\": \"INATIVO\",\r\n        \"dataNascimento\": \"2000-09-13\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/clientes/:clienteId",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						":clienteId"
+					],
+					"variable": [
+						{
+							"key": "clienteId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar parcial",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"ASDINATIVO\",\r\n    \"dataNascimento\": \"1989-01-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/clientes/:clienteId",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						":clienteId"
+					],
+					"variable": [
+						{
+							"key": "clienteId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/clientes/:codigoCliente",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						":codigoCliente"
+					],
+					"variable": [
+						{
+							"key": "codigoCliente",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

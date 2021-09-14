@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +30,9 @@ import br.com.builders.domain.model.Cliente;
 import br.com.builders.domain.repository.ClienteRepository;
 import br.com.builders.domain.repository.filter.ClienteFilter;
 import br.com.builders.domain.service.ClienteService;
+import io.swagger.annotations.Api;
 
+@Api(tags = "Clientes")
 @RestController
 @RequestMapping("/api/clientes")
 public class ClienteController {
@@ -57,6 +60,7 @@ public class ClienteController {
 	}
 
 	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente salvar(@RequestBody Cliente cliente) {
 		return clienteService.salvar(cliente);
 	}
@@ -105,7 +109,7 @@ public class ClienteController {
 	private void merge(Map<String, Object> atributos, Cliente clienteAtual) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-		// Registro de modulo para o mapper conseguir trabalhar com localdate
+		// Registro de modulo para o mapper conseguir trabalhar com api de datas
 		objectMapper.registerModule(new JavaTimeModule());
 
 		Cliente clienteAtributos = objectMapper.convertValue(atributos, Cliente.class);

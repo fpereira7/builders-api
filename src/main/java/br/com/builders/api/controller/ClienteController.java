@@ -45,7 +45,7 @@ public class ClienteController {
 		return clienteRepository.filtrar(clienteFilter, pageable);
 	}
 
-	@GetMapping("/{codigoCliente}")
+	@GetMapping("/{clienteId}")
 	public ResponseEntity<Cliente> buscarPorId(@PathVariable Long clienteId) {
 		Optional<Cliente> cliente = clienteRepository.findById(clienteId);
 

@@ -11,16 +11,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 
 import br.com.builders.domain.StatusCliente;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Data
 public class Cliente {
 
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

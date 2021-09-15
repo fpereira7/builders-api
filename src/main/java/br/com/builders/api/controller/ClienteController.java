@@ -2,7 +2,6 @@ package br.com.builders.api.controller;
 
 import java.lang.reflect.Field;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,14 +48,15 @@ public class ClienteController {
 	}
 
 	@GetMapping("/{clienteId}")
-	public ResponseEntity<Cliente> buscarPorId(@PathVariable Long clienteId) {
-		Optional<Cliente> cliente = clienteRepository.findById(clienteId);
-
-		if (cliente.isPresent()) {
-			return ResponseEntity.ok(cliente.get());
+	public ResponseEntity<?> buscarPorId(@PathVariable Long clienteId) {
+		try {
+			Cliente cliente = clienteService.buscarPorId(clienteId);
+			return ResponseEntity.ok(cliente);
+			
+		} catch (EntidadeNaoEncontradaException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 
-		return ResponseEntity.notFound().build();
 	}
 
 	@PostMapping
@@ -70,13 +70,13 @@ public class ClienteController {
 		try {
 			clienteService.excluir(clienteId);
 			return ResponseEntity.noContent().build();
-			
+
 		} catch (EntidadeNaoEncontradaException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
-		
+
 	}
-	
+
 	@PutMapping("/{clienteId}")
 	public ResponseEntity<Cliente> atualizar(@RequestBody Cliente cliente, @PathVariable Long clienteId) {
 		Cliente clienteAtual = clienteRepository.findById(clienteId).orElse(null);
@@ -108,7 +108,7 @@ public class ClienteController {
 
 	private void merge(Map<String, Object> atributos, Cliente clienteAtual) {
 		ObjectMapper objectMapper = new ObjectMapper();
-		
+
 		// Registro de modulo para o mapper conseguir trabalhar com api de datas
 		objectMapper.registerModule(new JavaTimeModule());
 

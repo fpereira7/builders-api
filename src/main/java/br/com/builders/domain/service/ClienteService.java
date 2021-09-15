@@ -1,5 +1,7 @@
 package br.com.builders.domain.service;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,16 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 
+	public Cliente buscarPorId(Long clienteId) {
+		try {
+			return clienteRepository.findById(clienteId).get();
+			
+		} catch (NoSuchElementException e) {
+			throw new EntidadeNaoEncontradaException(
+					String.format("Não existe cliente cadastrado com o código %d", clienteId));
+		}
+	}
+
 	public Cliente salvar(Cliente cliente) {
 		cliente.setStatus(StatusCliente.ATIVO);
 		return clienteRepository.save(cliente);
@@ -23,7 +35,7 @@ public class ClienteService {
 	public void excluir(Long clienteId) {
 		try {
 			clienteRepository.deleteById(clienteId);
-			
+
 		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
 					String.format("Não existe cliente cadastrado com o código %d", clienteId));

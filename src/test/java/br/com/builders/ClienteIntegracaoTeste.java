@@ -22,7 +22,7 @@ import br.com.builders.domain.service.ClienteService;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class BuildersApiApplicationTests {
+public class ClienteIntegracaoTeste {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -48,7 +48,7 @@ public class BuildersApiApplicationTests {
 	public void deveFalharAoCadastrarClienteSemNome() {
 		Cliente cliente = new Cliente();
 		cliente.setNome(null);
-
+		
 		ConstraintViolationException erroEsperado = Assertions.assertThrows(ConstraintViolationException.class, () -> {
 			clienteRepository.save(cliente);
 		});

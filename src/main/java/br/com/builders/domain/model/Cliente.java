@@ -14,9 +14,13 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import br.com.builders.domain.StatusCliente;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Data

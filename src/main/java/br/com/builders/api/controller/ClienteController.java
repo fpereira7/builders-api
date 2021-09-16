@@ -30,6 +30,7 @@ import br.com.builders.domain.repository.ClienteRepository;
 import br.com.builders.domain.repository.filter.ClienteFilter;
 import br.com.builders.domain.service.ClienteService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Clientes")
 @RestController
@@ -42,11 +43,13 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 
+	@ApiOperation(value = "Retorna lista de clientes")
 	@GetMapping
 	public Page<Cliente> buscarTodos(ClienteFilter clienteFilter, Pageable pageable) {
 		return clienteRepository.filtrar(clienteFilter, pageable);
 	}
 
+	@ApiOperation(value = "Retorna cliente por Id")
 	@GetMapping("/{clienteId}")
 	public ResponseEntity<?> buscarPorId(@PathVariable Long clienteId) {
 		try {
@@ -59,12 +62,14 @@ public class ClienteController {
 
 	}
 
+	@ApiOperation(value = "Cadastra cliente")
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente salvar(@RequestBody Cliente cliente) {
 		return clienteService.salvar(cliente);
 	}
 
+	@ApiOperation(value = "Exclui um cliente por Id")
 	@DeleteMapping("/{clienteId}")
 	public ResponseEntity<?> excluir(@PathVariable Long clienteId) {
 		try {
@@ -77,6 +82,7 @@ public class ClienteController {
 
 	}
 
+	@ApiOperation(value = "Atualiza cliente por completo por Id")
 	@PutMapping("/{clienteId}")
 	public ResponseEntity<Cliente> atualizar(@RequestBody Cliente cliente, @PathVariable Long clienteId) {
 		Cliente clienteAtual = clienteRepository.findById(clienteId).orElse(null);
@@ -92,6 +98,7 @@ public class ClienteController {
 
 	}
 
+	@ApiOperation(value = "Atualiza dados de Cliente de forma parcial por Id")
 	@PatchMapping("/{clienteId}")
 	public ResponseEntity<?> atualizacaoGranular(@PathVariable Long clienteId,
 			@RequestBody Map<String, Object> atributos) {

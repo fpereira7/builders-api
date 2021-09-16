@@ -33,7 +33,7 @@ public class SpringFoxConfig implements WebMvcConfigurer{
 				.title("Builders Api")
 				.description("Projeto para Etapa de Validação - Vaga Senior Java Developer - Cód. 413")
 				.version("1.0")
-				.contact(new Contact("Francisco Pereira", "https://github.com/Franciscoanp/builders-api", "francisco.anpereira@gmail.com"))
+				.contact(new Contact("Francisco Pereira", "https://github.com/Franciscoanp/builders-api", ""))
 				.build();
 	}
 	

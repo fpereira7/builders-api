@@ -37,13 +37,6 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Banco de Dados H2 -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
 		<!-- MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -103,6 +96,18 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<mainClass>br.com.builders.BuildersApiApplication</mainClass>
+							<outputDirectory>${project.basedir}/docker</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
@@ -124,6 +129,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 		</plugins>
 	</build>
 

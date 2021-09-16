@@ -39,6 +39,16 @@ Acesso:
 - Aplicação será iniciada na porta 8080 e o mysql na porta 3306 por default
 - Acessar o link: http://localhost:8080/swagger-ui.html#/Clientes
 
+## Processo de criação
+- Modelagem da estrutura do projeto separando em pacotes e responsabilidade por camadas. modelo, entitidade, serviço e endpoints
+- Documentação dos endpoints utilizando Swagger
+- Criação e validação do banco de dados usando Jpa/Hibernate
+- Testes de integração com a camada de acesso ao banco de dados e unitarios com pequenas partes do codigo
+- Geração da collection no postman ao finalizar os testes de cada endpoint
+- Deploy da aplicação utilizando Heroku
+- Criação da imagem do backend para publicar no docker
+- Criação do arquivo docker-compose.yml para relacionar o backend com mysql
+
 ## Observações
 - Fiz uma carga inicial com 15 registros no banco de dados, caso tenha necessidade de subir a aplicação para debugar e validar os fluxos.
 - Na Collection do Postman, não defini variavel de ambiente. Basta usar localhost e porta default como mencionado anteriormente.
